@@ -10,6 +10,7 @@ Overall, by combining computer vision with structural and spectral indicators, P
 
 ## Model 1 — Image Only
 ResNet34 backbone pretrained on ImageNet, fine-tuned for pasture biomass regression. The classifier head is replaced with a custom regression head (256 → 128 → 3 outputs) with ReLU activations and dropout. Trained on 357 pasture images split 80/20 by image to prevent leakage. Heavy augmentation applied due to small dataset size. Predicts green biomass, GDM, and total biomass from a single top-view photo with no additional inputs required.
+<img width="812" height="716" alt="image" src="https://github.com/user-attachments/assets/2546163c-0244-4fb6-aeec-69dddb04383f" />
 ```
 ── Final Val R² Scores ──
   Dry_Green_g         : 0.8011
@@ -23,6 +24,7 @@ ResNet34 backbone pretrained on ImageNet, fine-tuned for pasture biomass regress
 Same ResNet34 backbone as Model 1, with an additional MLP branch (2 → 256 → 256) that processes two tabular inputs: NDVI from a handheld GreenSeeker sensor and compressed canopy height from a falling plate meter. The two streams are concatenated and passed through the shared regression head to predict green biomass, GDM, and total biomass.
 NDVI (Normalized Difference Vegetation Index) directly measures the ratio of live green vegetation to bare ground — information that is partially visible in an image but captured much more precisely by a dedicated sensor. Canopy height from the plate meter adds a density dimension that the camera simply cannot see: two paddocks can look identical in a photo but have very different biomass if one is tall and dense versus short and sparse. Together these two sensors give the model information that exists beyond the RGB image, which is why Model 2 consistently outperforms Model 1.
 The tabular branch was intentionally kept separate from the backbone rather than encoding sensor values into the image — this way the model can learn image features and sensor features independently before fusing them, which is more effective than trying to force all information through a single pathway.
+<img width="773" height="745" alt="image" src="https://github.com/user-attachments/assets/2766707d-4daf-4ab4-935d-aab1c5f146e4" />
 ```
 ── Final Val R² Scores (Model 2) ──
   Dry_Green_g         : 0.7647
