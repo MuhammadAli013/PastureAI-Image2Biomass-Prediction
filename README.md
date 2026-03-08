@@ -26,6 +26,7 @@ NDVI (Normalized Difference Vegetation Index) directly measures the ratio of liv
 The tabular branch was intentionally kept separate from the backbone rather than encoding sensor values into the image — this way the model can learn image features and sensor features independently before fusing them, which is more effective than trying to force all information through a single pathway.
 
 <img width="773" height="745" alt="image" src="https://github.com/user-attachments/assets/2766707d-4daf-4ab4-935d-aab1c5f146e4" />
+
 ```
 ── Final Val R² Scores (Model 2) ──
   Dry_Green_g         : 0.7647
