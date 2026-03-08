@@ -1,2 +1,3 @@
-# Image2Biomass_Prediction
-Deep learning system that estimates pasture biomass from any photos. Predicts green biomass, GDM, and total biomass with GPS-tagged field maps and grazing decisions. No expert knowledge required. Built with on the `CSIRO - Image2Biomass Prediction pasture` dataset.
+# PastureAI-Image2Biomass-Prediction
+PastureAI is a deep learning system that estimates pasture biomass directly from top-view smartphone photos (or any other photo), requiring zero expert knowledge from the farmer. Given an image of a paddock, the system predicts green biomass, green dry matter (GDM), and total biomass in grams - and translates those numbers into an immediate grazing decision.
+The system offers two models. Model 1 requires only a photo. Model 2 additionally accepts **NDVI** and **canopy height** readings from cheap handheld sensors (*falling plate*), improving accuracy when available. 
